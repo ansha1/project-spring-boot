@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -50,7 +51,7 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 			String string = IOUtils.toString(response.getEntity().getContent());
 			System.out.println("Response body Roster: " + string);
 			LOGGER.debug("Response body: " + string);
-			if (response.getStatusLine().getStatusCode() != 201) {
+			if (response.getStatusLine().getStatusCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
 			}
 			System.out.println("Roster Done");
@@ -66,13 +67,14 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 		return null;
 	}
 
-	public Roster getRoster(String rosterId) {
+	public String getRoster(String rosterId) {
 		LOGGER.debug("Inside getRoster");
+		loadProperties();
 		DefaultHttpClient httpClient = null;
 		try {
 			String method = "getRoster";
 			httpClient = new DefaultHttpClient();
-			HttpPost postRequest = new HttpPost(url + "/roster/" + method);
+			HttpGet postRequest = new HttpGet(url + "/roster/" + method);
 			LOGGER.debug("END POINT URL: " + postRequest.getURI());
 			Map<String, Object> values = new HashMap<String, Object>();
 			values.put("roster_id", rosterId);
@@ -80,18 +82,21 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 			LOGGER.debug("Request body: " + body);
 			StringEntity entity = new StringEntity(body);
 			entity.setContentType("application/json");
-			postRequest.setEntity(entity);
+			
+			//postRequest.setParams(params);
+			
+			//postRequest.setEntity(entity);
 			HttpResponse response = httpClient.execute(postRequest);
 			String string = IOUtils.toString(response.getEntity().getContent());
 			System.out.println("Response body: " + string);
 			LOGGER.debug("Response body: " + string);
-			if (response.getStatusLine().getStatusCode() != 201) {
+			if (response.getStatusLine().getStatusCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
 			}
 			System.out.println("getRoster Done");
 			httpClient.getConnectionManager().shutdown();
-			Gson gson = new Gson();
-			return gson.fromJson(string, Roster.class);
+			//Gson gson = new Gson();
+			return string;
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
