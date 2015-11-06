@@ -26,8 +26,7 @@ public class StationServiceImpl extends GenericServiceClient implements StationS
 	public String createStation(Station station) throws Exception {
 		LOGGER.debug("Inside createStation");
 		loadProperties();
-		return "Success";
-		/**
+
 		DefaultHttpClient httpClient = null;
 		try {
 			String method = "createStation";
@@ -48,7 +47,7 @@ public class StationServiceImpl extends GenericServiceClient implements StationS
 			String string = IOUtils.toString(response.getEntity().getContent());
 			System.out.println("Response body Stations: " + string);
 			LOGGER.debug("Response body: " + string);
-			if (response.getStatusLine().getStatusCode() != 201) {
+			if (response.getStatusLine().getStatusCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
 			}
 			System.out.println("Station Done");
@@ -62,7 +61,6 @@ public class StationServiceImpl extends GenericServiceClient implements StationS
 			httpClient.close();
 		}
 		return null;
-		**/
 	}
 
 }

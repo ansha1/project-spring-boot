@@ -35,11 +35,8 @@ public class EmployeeServiceImpl extends GenericServiceClient implements Employe
 	public String addEmployeeToRoster(Employee employee) throws Exception {
 		// TODO Auto-generated method stub
 		LOGGER.debug("Inside addEmployeeToRoster");
-		
 		loadProperties();
 		DefaultHttpClient httpClient = null;
-		return "Success";
-		/**
 		try {
 			String method = "addEmployeeToRoster";
 			httpClient = new DefaultHttpClient();
@@ -60,7 +57,7 @@ public class EmployeeServiceImpl extends GenericServiceClient implements Employe
 			String string = IOUtils.toString(response.getEntity().getContent());
 			System.out.println("Response body: " + string);
 			LOGGER.debug("Response body: " + string);
-			if (response.getStatusLine().getStatusCode() != 201) {
+			if (response.getStatusLine().getStatusCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
 			}
 			System.out.println("Employee Done");
@@ -73,9 +70,7 @@ public class EmployeeServiceImpl extends GenericServiceClient implements Employe
 		} finally {
 			httpClient.close();
 		}
-	
 		return null;
-		**/
 	} 
 
-}
+		}

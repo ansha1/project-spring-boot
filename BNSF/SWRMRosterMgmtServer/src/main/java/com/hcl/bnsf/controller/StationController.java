@@ -29,11 +29,8 @@ public class StationController {
 	    @RequestMapping(value = "/station/createStation", method = RequestMethod.POST)
 	    public String createStation(@RequestBody @Valid final Station station) throws Exception {
 	        System.out.println("Received request to create the {}" + station);
-	        return "Success";
-	        /**
 	    	LOGGER.debug("Received request to create the {}", station);
 	        return stationService.createStation(station);
-	        **/
 	    }
 
 	}

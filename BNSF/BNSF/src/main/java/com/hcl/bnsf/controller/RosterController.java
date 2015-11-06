@@ -39,14 +39,14 @@ public class RosterController {
 			try {
 		        System.out.println("Received request to create the {get}");
 				LOGGER.debug("Received request to get roster");
-				Roster roster = rosterService.getRoster("1");
-				LOGGER.debug(String.valueOf(roster));
+				String roster = rosterService.getRoster("1");
+				LOGGER.debug(roster);
 			}
 			catch (Exception e) {
 				LOGGER.debug(e.getMessage(), e);
 				e.printStackTrace();
 			}
-			return "roster/getRoster";
+			return rosterService.getRoster("1");
 		}
 	}
 

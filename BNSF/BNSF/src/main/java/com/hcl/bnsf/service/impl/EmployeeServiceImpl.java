@@ -57,7 +57,7 @@ public class EmployeeServiceImpl extends GenericServiceClient implements Employe
 			String string = IOUtils.toString(response.getEntity().getContent());
 			System.out.println("Response body: " + string);
 			LOGGER.debug("Response body: " + string);
-			if (response.getStatusLine().getStatusCode() != 201) {
+			if (response.getStatusLine().getStatusCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
 			}
 			System.out.println("Employee Done");
