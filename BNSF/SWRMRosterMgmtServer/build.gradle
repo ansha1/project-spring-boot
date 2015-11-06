@@ -76,6 +76,8 @@ dependencies {
 		compile("org.springframework.boot:spring-boot-starter-actuator")
 		// end::actuator[]
 		
+		compile("org.codehaus.groovy.modules.http-builder:http-builder:0.5.1")
+				
 		//Test framework for spring-boot
 		testCompile("org.springframework.boot:spring-boot-starter-test")
 		
@@ -86,7 +88,9 @@ dependencies {
 		// mandatory dependencies for using Spock
 		compile "org.codehaus.groovy:groovy-all:2.4.1"
 		testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
-		
+		testCompile "org.spockframework:spock-spring:1.0-groovy-2.4"
+		testCompile "org.springframework:spring-test:4.2.2.RELEASE"
+
 		//Other dependencies
 		compile "javax.inject:javax.inject:1"
 		compile "org.apache.httpcomponents:httpclient:4.5.1"
