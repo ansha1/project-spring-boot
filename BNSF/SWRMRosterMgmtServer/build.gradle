@@ -9,12 +9,18 @@
 
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
+test {
+  ignoreFailures true
+}
 
 // Apply the Spring-boot plugin
 apply plugin: 'spring-boot'
 
 //Apply the groovy plugin needed for Spock
 apply plugin: 'groovy'
+
+//Apply the sonar runner plugin
+apply plugin: 'sonar-runner'
 
 buildscript {
 	repositories {
@@ -31,7 +37,12 @@ repositories {
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
 	mavenCentral()
+	//maven { url "https://plugins.gradle.org/m2/" }
 }
+
+//dependencies {
+	//classpath "org.sonarqube.gradle:gradle-sonarqube-plugin:1.0"
+//}
 
 apply plugin: 'war'
 war {
@@ -123,5 +134,24 @@ task functionalTest(type: Test) {
 		exclude '**/service/**'
 	testLogging {
 		events "passed", "skipped", "failed"
+	}
+}
+
+//sonarqube {
+sonarRunner{
+	sonarProperties {
+		property "sonar.host.url", "http://52.1.56.21:9000"
+		property "sonar.jdbc.url", "jdbc:h2:tcp://52.1.56.21:9092/sonar"
+		//property "sonar.jdbc.driverClassName", "com.mysql.jdbc.Driver"
+		property "sonar.jdbc.username", "admin"
+		property "sonar.jdbc.password", "admin"
+		
+		property "sonar.projectKey", "SWRMRosterMgmt"
+		property "sonar.projectName", "SWRMRosterMgmt"
+		property "sonar.projectVersion", "V1.0"
+		property "sonar.language", "java"
+		property "sonar.sources", "src"
+		property "sonar.binaries", "build"
+		property "sonar.profile", "FindBugs"
 	}
 }
