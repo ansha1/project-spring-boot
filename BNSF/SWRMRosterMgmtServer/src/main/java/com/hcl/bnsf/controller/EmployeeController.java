@@ -32,7 +32,7 @@ public class EmployeeController {
 	    
 	    @RequestMapping(value = "/employee/addEmployeeToRoster", method = RequestMethod.POST)
 	    public String addEmployeeToRoster(@RequestBody @Valid final Employee employee) throws Exception {
-	        System.out.println("Received request to create the {}" + employee);
+	        System.out.println("Received request in the method addEmployeeToRoster with data: " + employee);
 	    	LOGGER.debug("Received request to create the {}", employee);
 	        return employeeService.addEmployeeToRoster(employee);
 	    }

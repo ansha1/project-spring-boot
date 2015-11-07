@@ -33,12 +33,15 @@ public class StationServiceImpl extends GenericServiceClient implements StationS
 			httpClient = new DefaultHttpClient();
 			HttpPost postRequest = new HttpPost(url + "/station/" + method);
 			LOGGER.debug("END POINT URL: " + postRequest.getURI());
+			/**
 			Map<String, Object> values = new HashMap<String, Object>();
 			values.put("id", station.getId());
 			values.put("name", station.getName());
 			values.put("employee_ids", station.getEmployees());
 			values.put("station_ids", station.getStations());
 			String body = "{\"" + method + "\": " + OBJECT_MAPPER.writeValueAsString(values) + "}";
+			**/
+			String body = OBJECT_MAPPER.writeValueAsString(station);
 			LOGGER.debug("Request body: " + body);
 			StringEntity entity = new StringEntity(body);
 			entity.setContentType("application/json");

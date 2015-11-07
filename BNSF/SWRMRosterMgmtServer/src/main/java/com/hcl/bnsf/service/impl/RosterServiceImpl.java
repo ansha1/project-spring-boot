@@ -34,15 +34,17 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 			httpClient = new DefaultHttpClient();
 			HttpPost postRequest = new HttpPost(url + "/roster/" + method);
 			LOGGER.debug("END POINT URL: " + postRequest.getURI());
+			/**
 			Map<String, Object> values = new HashMap<String, Object>();
 			values.put("roster_id", roster.getId());
 			values.put("roster_type", roster.getType());
 			values.put("roster_name", roster.getName());
 			values.put("station_ids", roster.getStations());
 			values.put("employee_ids", roster.getEmployees());
-			
-			
 			String body = "{\"" + method + "\": " + OBJECT_MAPPER.writeValueAsString(values) + "}";
+			**/
+			String body = OBJECT_MAPPER.writeValueAsString(roster);
+
 			LOGGER.debug("Request body: " + body);
 			StringEntity entity = new StringEntity(body);
 			entity.setContentType("application/json");
