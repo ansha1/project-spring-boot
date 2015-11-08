@@ -22,6 +22,8 @@ apply plugin: 'groovy'
 //Apply the sonar runner plugin
 apply plugin: 'sonar-runner'
 
+apply plugin: 'jacoco'
+
 buildscript {
 	repositories {
 	  mavenCentral()
@@ -137,6 +139,12 @@ task functionalTest(type: Test) {
 	}
 }
 
+test {
+    jacoco {
+      destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+    }
+}
+
 //sonarqube {
 sonarRunner{
 	sonarProperties {
@@ -153,5 +161,7 @@ sonarRunner{
 		property "sonar.sources", "src"
 		property "sonar.binaries", "build"
 		property "sonar.profile", "FindBugs"
+		
+		property "sonar.jacoco.reportPath", "$buildDir/jacoco/jacocoTest.exec"	
 	}
 }
