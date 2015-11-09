@@ -60,7 +60,11 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 			System.out.println("Roster Done");
 			httpClient.getConnectionManager().shutdown();
 			return string;
-		}catch (Exception e) 
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (NullPointerException e) 
 		{
 			e.printStackTrace();
 		}finally {
@@ -71,9 +75,10 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 
 	public String getRoster(String rosterId) {
 		LOGGER.debug("Inside getRoster");
-		loadProperties();
+
 		DefaultHttpClient httpClient = null;
 		try {
+			loadProperties();
 			String method = "getRoster";
 			httpClient = new DefaultHttpClient();
 			HttpGet postRequest = new HttpGet(url + "/roster/" + method);
@@ -104,7 +109,7 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (Exception e) 
+		} catch (NullPointerException e) 
 		{
 			e.printStackTrace();
 		}finally {
