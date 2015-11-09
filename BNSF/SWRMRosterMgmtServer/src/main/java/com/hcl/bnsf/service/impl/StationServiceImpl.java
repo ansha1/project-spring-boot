@@ -53,7 +53,8 @@ public class StationServiceImpl extends GenericServiceClient implements StationS
 			if (response.getStatusLine().getStatusCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
 			}
-			System.out.println("Station Done");
+			
+			System.out.println("Create Station Done");
 			httpClient.getConnectionManager().shutdown();
 			return string;
 		} catch (MalformedURLException e) {

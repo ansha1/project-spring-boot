@@ -12,8 +12,6 @@ public class GenericServiceClient {
 
 	protected final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
-	protected String url;
-
 	protected void loadProperties() {
 
 		try {

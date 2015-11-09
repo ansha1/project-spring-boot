@@ -33,8 +33,9 @@ public class EmployeeServiceImpl extends GenericServiceClient implements Employe
 
 
 	public String addEmployeeToRoster(Employee employee) throws Exception {
-		// TODO Auto-generated method stub
+
 		LOGGER.debug("Inside addEmployeeToRoster");
+		
 		loadProperties();
 		DefaultHttpClient httpClient = null;
 		try {

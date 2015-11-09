@@ -98,6 +98,7 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 			if (response.getStatusLine().getStatusCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
 			}
+			
 			System.out.println("getRoster Done");
 			httpClient.getConnectionManager().shutdown();
 			//Gson gson = new Gson();
