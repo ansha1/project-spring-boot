@@ -32,6 +32,7 @@ public class EmployeeServiceImpl extends GenericServiceClient implements Employe
 	protected final static ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
 
+	@SuppressWarnings("deprecation")
 	public String addEmployeeToRoster(Employee employee) throws Exception {
 
 		LOGGER.debug("Inside addEmployeeToRoster");
@@ -71,7 +72,8 @@ public class EmployeeServiceImpl extends GenericServiceClient implements Employe
 				throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
 			}
 			System.out.println("Employee Done");
-			//httpClient.getConnectionManager().shutdown();
+			//
+			httpClient.getConnectionManager().shutdown();
 			return string;
 		}catch (MalformedURLException e) {
 			LOGGER.debug("MalformedURLException in RosterServiceImpl :" +e.getMessage());
