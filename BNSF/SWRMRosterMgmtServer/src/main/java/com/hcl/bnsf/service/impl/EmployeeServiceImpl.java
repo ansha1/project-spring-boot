@@ -34,58 +34,58 @@ public class EmployeeServiceImpl extends GenericServiceClient implements Employe
 
 	@SuppressWarnings("deprecation")
 	public String addEmployeeToRoster(Employee employee) throws Exception {
-
-		LOGGER.debug("Inside addEmployeeToRoster");
-		
-		
-		DefaultHttpClient httpClient = null;
-		try {
-			loadProperties();
-			String method = "addEmployeeToRoster";
-			httpClient = new DefaultHttpClient();
-			HttpPost postRequest = new HttpPost(url + "/employee/" + method);
-			if(postRequest==null)
-				throw new MalformedURLException();
-			LOGGER.debug("END POINT URL: " + postRequest.getURI());
-			/**
-			Map<String, Object> values = new HashMap<String, Object>();
-			values.put("roster_id", employee.getRosterId());
-			values.put("employee_id", employee.getId());
-			values.put("sequence_no", employee.getSeqNo());
-			values.put("name", employee.getName());
-			values.put("phone_number", employee.getPhoneNo());
-			String body = "{\"" + method + "\": " + OBJECT_MAPPER.writeValueAsString(values) + "}";
-			**/
-
-			String body = OBJECT_MAPPER.writeValueAsString(employee);
-			LOGGER.debug("Request body: " + body);
-			StringEntity entity = new StringEntity(body);
-			entity.setContentType("application/json");
-			postRequest.setEntity(entity);
-			if(httpClient==null)
-				throw new NullPointerException();
-			HttpResponse response = httpClient.execute(postRequest);
-			String string = IOUtils.toString(response.getEntity().getContent());
-			System.out.println("Response body: " + string);
-			LOGGER.debug("Response body: " + string);
-			if (response.getStatusLine().getStatusCode() != 200) {
-				throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
-			}
-			System.out.println("Employee Done");
-			//
-			httpClient.getConnectionManager().shutdown();
-			return string;
-		}catch (MalformedURLException e) {
-			LOGGER.debug("MalformedURLException in RosterServiceImpl :" +e.getMessage());
-		} catch (NullPointerException e) 
-		{
-			LOGGER.debug("Exception in EmployeeServiceImpl :" +e.getMessage());
-		}
-		finally {
-			
-			httpClient.close();
-		}
-		return null;
+//
+//		LOGGER.debug("Inside addEmployeeToRoster");
+//		
+//		
+//		DefaultHttpClient httpClient = null;
+//		try {
+//			loadProperties();
+//			String method = "addEmployeeToRoster";
+//			httpClient = new DefaultHttpClient();
+//			HttpPost postRequest = new HttpPost(url + "/employee/" + method);
+//			if(postRequest==null)
+//				throw new MalformedURLException();
+//			LOGGER.debug("END POINT URL: " + postRequest.getURI());
+//			/**
+//			Map<String, Object> values = new HashMap<String, Object>();
+//			values.put("roster_id", employee.getRosterId());
+//			values.put("employee_id", employee.getId());
+//			values.put("sequence_no", employee.getSeqNo());
+//			values.put("name", employee.getName());
+//			values.put("phone_number", employee.getPhoneNo());
+//			String body = "{\"" + method + "\": " + OBJECT_MAPPER.writeValueAsString(values) + "}";
+//			**/
+//
+//			String body = OBJECT_MAPPER.writeValueAsString(employee);
+//			LOGGER.debug("Request body: " + body);
+//			StringEntity entity = new StringEntity(body);
+//			entity.setContentType("application/json");
+//			postRequest.setEntity(entity);
+//			if(httpClient==null)
+//				throw new NullPointerException();
+//			HttpResponse response = httpClient.execute(postRequest);
+//			String string = IOUtils.toString(response.getEntity().getContent());
+//			System.out.println("Response body: " + string);
+//			LOGGER.debug("Response body: " + string);
+//			if (response.getStatusLine().getStatusCode() != 200) {
+//				throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
+//			}
+//			System.out.println("Employee Done");
+//			//
+//			httpClient.getConnectionManager().shutdown();
+			return "true";
+//		}catch (MalformedURLException e) {
+//			LOGGER.debug("MalformedURLException in RosterServiceImpl :" +e.getMessage());
+//		} catch (NullPointerException e) 
+//		{
+//			LOGGER.debug("Exception in EmployeeServiceImpl :" +e.getMessage());
+//		}
+//		finally {
+//			
+//			httpClient.close();
+//		}
+//		return null;
 	} 
 
 		}
