@@ -50,6 +50,8 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 			StringEntity entity = new StringEntity(body);
 			entity.setContentType("application/json");
 			postRequest.setEntity(entity);
+			if(httpClient == null)
+				throw new NullPointerException();
 			HttpResponse response = httpClient.execute(postRequest);
 			String string = IOUtils.toString(response.getEntity().getContent());
 			System.out.println("Response body Roster: " + string);
@@ -93,6 +95,9 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 			//postRequest.setParams(params);
 			
 			//postRequest.setEntity(entity);
+			if(httpClient == null)
+				throw new NullPointerException();
+
 			HttpResponse response = httpClient.execute(postRequest);
 			String string = IOUtils.toString(response.getEntity().getContent());
 			System.out.println("Response body: " + string);
