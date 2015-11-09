@@ -11,11 +11,12 @@ import org.slf4j.LoggerFactory;
 public class GenericServiceClient {
 
 	protected final Logger LOGGER = LoggerFactory.getLogger(getClass());
+	protected String url;
 
 	protected void loadProperties() {
-
+		FileInputStream inFile =null;
 		try {
-			FileInputStream inFile = new FileInputStream(new File("connection.properties"));
+			inFile = new FileInputStream(new File("connection.properties"));
 			Properties properties = new Properties();
 			properties.load(inFile);
 			url = properties.getProperty("url");
