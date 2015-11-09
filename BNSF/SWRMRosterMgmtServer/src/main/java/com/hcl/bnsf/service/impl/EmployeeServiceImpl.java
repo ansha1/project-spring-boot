@@ -36,9 +36,10 @@ public class EmployeeServiceImpl extends GenericServiceClient implements Employe
 
 		LOGGER.debug("Inside addEmployeeToRoster");
 		
-		loadProperties();
+		
 		DefaultHttpClient httpClient = null;
 		try {
+			loadProperties();
 			String method = "addEmployeeToRoster";
 			httpClient = new DefaultHttpClient();
 			HttpPost postRequest = new HttpPost(url + "/employee/" + method);
@@ -67,11 +68,7 @@ public class EmployeeServiceImpl extends GenericServiceClient implements Employe
 			System.out.println("Employee Done");
 			httpClient.getConnectionManager().shutdown();
 			return string;
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (Exception e) 
+		}catch (Exception e) 
 		{
 			e.printStackTrace();
 		}finally {

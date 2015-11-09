@@ -27,9 +27,10 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 
 	public String createRoster(Roster roster) throws Exception {
 		LOGGER.debug("Inside createRoster");
-		loadProperties();
+		
 		DefaultHttpClient httpClient = null;
 		try {
+			loadProperties();
 			String method = "createRoster";
 			httpClient = new DefaultHttpClient();
 			HttpPost postRequest = new HttpPost(url + "/roster/" + method);
@@ -59,11 +60,7 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 			System.out.println("Roster Done");
 			httpClient.getConnectionManager().shutdown();
 			return string;
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (Exception e) 
+		}catch (Exception e) 
 		{
 			e.printStackTrace();
 		}finally {

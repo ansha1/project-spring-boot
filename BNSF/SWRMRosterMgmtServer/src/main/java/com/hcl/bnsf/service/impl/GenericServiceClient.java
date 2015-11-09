@@ -15,9 +15,10 @@ public class GenericServiceClient {
 
 	protected void loadProperties() {
 		FileInputStream inFile =null;
+		Properties properties = null;
 		try {
 			inFile = new FileInputStream(new File("connection.properties"));
-			Properties properties = new Properties();
+			properties = new Properties();
 			properties.load(inFile);
 			url = properties.getProperty("url");
 		} catch (IOException e) {

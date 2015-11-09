@@ -25,10 +25,11 @@ public class StationServiceImpl extends GenericServiceClient implements StationS
 
 	public String createStation(Station station) throws Exception {
 		LOGGER.debug("Inside createStation");
-		loadProperties();
+		
 
 		DefaultHttpClient httpClient = null;
 		try {
+			loadProperties();
 			String method = "createStation";
 			httpClient = new DefaultHttpClient();
 			HttpPost postRequest = new HttpPost(url + "/station/" + method);
