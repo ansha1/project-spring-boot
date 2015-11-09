@@ -37,11 +37,11 @@ public class EmployeeServiceImpl extends GenericServiceClient implements Employe
 		LOGGER.debug("Inside addEmployeeToRoster");
 		
 		
-		DefaultHttpClient httpClient = null;
+		 
 		try {
 			loadProperties();
 			String method = "addEmployeeToRoster";
-			httpClient = new DefaultHttpClient();
+			DefaultHttpClient httpClient = new DefaultHttpClient();
 			HttpPost postRequest = new HttpPost(url + "/employee/" + method);
 			LOGGER.debug("END POINT URL: " + postRequest.getURI());
 			/**
@@ -71,10 +71,11 @@ public class EmployeeServiceImpl extends GenericServiceClient implements Employe
 		}catch (Exception e) 
 		{
 			e.printStackTrace();
-		}finally {
-			
-			httpClient.close();
 		}
+//		finally {
+//			
+//			httpClient.close();
+//		}
 		return null;
 	} 
 
