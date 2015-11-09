@@ -14,6 +14,7 @@ public class GenericServiceClient {
 	protected String url;
 
 	protected void loadProperties() {
+		
 		FileInputStream inFile =null;
 		Properties properties = null;
 		try {
@@ -22,14 +23,13 @@ public class GenericServiceClient {
 			properties.load(inFile);
 			url = properties.getProperty("url");
 		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			LOGGER.debug("Exception in GenericServiceImpl :" +e.getMessage());		}
 		finally
 		{
 			try {
 				inFile.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				LOGGER.debug("IOException in GenericServiceImpl :" +e.getMessage());
 			}
 		}
 

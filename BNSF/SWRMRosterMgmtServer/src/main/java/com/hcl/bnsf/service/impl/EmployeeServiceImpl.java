@@ -37,12 +37,14 @@ public class EmployeeServiceImpl extends GenericServiceClient implements Employe
 		LOGGER.debug("Inside addEmployeeToRoster");
 		
 		
-		 
+		DefaultHttpClient httpClient = null;
 		try {
 			loadProperties();
 			String method = "addEmployeeToRoster";
-			DefaultHttpClient httpClient = new DefaultHttpClient();
+			httpClient = new DefaultHttpClient();
 			HttpPost postRequest = new HttpPost(url + "/employee/" + method);
+			if(postRequest==null)
+				throw new MalformedURLException();
 			LOGGER.debug("END POINT URL: " + postRequest.getURI());
 			/**
 			Map<String, Object> values = new HashMap<String, Object>();
@@ -53,11 +55,14 @@ public class EmployeeServiceImpl extends GenericServiceClient implements Employe
 			values.put("phone_number", employee.getPhoneNo());
 			String body = "{\"" + method + "\": " + OBJECT_MAPPER.writeValueAsString(values) + "}";
 			**/
+
 			String body = OBJECT_MAPPER.writeValueAsString(employee);
 			LOGGER.debug("Request body: " + body);
 			StringEntity entity = new StringEntity(body);
 			entity.setContentType("application/json");
 			postRequest.setEntity(entity);
+			if(httpClient==null)
+				throw new NullPointerException();
 			HttpResponse response = httpClient.execute(postRequest);
 			String string = IOUtils.toString(response.getEntity().getContent());
 			System.out.println("Response body: " + string);
@@ -68,14 +73,16 @@ public class EmployeeServiceImpl extends GenericServiceClient implements Employe
 			System.out.println("Employee Done");
 			httpClient.getConnectionManager().shutdown();
 			return string;
-		}catch (Exception e) 
+		}catch (MalformedURLException e) {
+			LOGGER.debug("MalformedURLException in RosterServiceImpl :" +e.getMessage());
+		} catch (NullPointerException e) 
 		{
-			e.printStackTrace();
+			LOGGER.debug("Exception in EmployeeServiceImpl :" +e.getMessage());
 		}
-//		finally {
-//			
-//			httpClient.close();
-//		}
+		finally {
+			
+			httpClient.close();
+		}
 		return null;
 	} 
 

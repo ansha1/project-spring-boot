@@ -34,7 +34,10 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 			String method = "createRoster";
 			httpClient = new DefaultHttpClient();
 			HttpPost postRequest = new HttpPost(url + "/roster/" + method);
+			if(postRequest==null)
+				throw new MalformedURLException();
 			LOGGER.debug("END POINT URL: " + postRequest.getURI());
+			
 			/**
 			Map<String, Object> values = new HashMap<String, Object>();
 			values.put("roster_id", roster.getId());
@@ -44,8 +47,8 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 			values.put("employee_ids", roster.getEmployees());
 			String body = "{\"" + method + "\": " + OBJECT_MAPPER.writeValueAsString(values) + "}";
 			**/
+			
 			String body = OBJECT_MAPPER.writeValueAsString(roster);
-
 			LOGGER.debug("Request body: " + body);
 			StringEntity entity = new StringEntity(body);
 			entity.setContentType("application/json");
@@ -63,12 +66,10 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 			httpClient.getConnectionManager().shutdown();
 			return string;
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.debug("MalformedURLException in RosterServiceImpl :" +e.getMessage());
 		} catch (NullPointerException e) 
 		{
-			e.printStackTrace();
+			LOGGER.debug("NullPointerException in RosterServiceImpl :" +e.getMessage());
 		}finally {
 			httpClient.close();
 		}
@@ -111,12 +112,12 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 			//Gson gson = new Gson();
 			return string;
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			LOGGER.debug("MalformedURLException in RosterServiceImpl :" +e.getMessage());
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.debug("IOException in RosterServiceImpl :" +e.getMessage());
 		} catch (NullPointerException e) 
 		{
-			e.printStackTrace();
+			LOGGER.debug("NullPointerException in RosterServiceImpl :" +e.getMessage());
 		}finally {
 			httpClient.close();
 		}

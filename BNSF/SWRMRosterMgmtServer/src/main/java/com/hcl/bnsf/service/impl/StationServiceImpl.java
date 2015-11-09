@@ -33,6 +33,8 @@ public class StationServiceImpl extends GenericServiceClient implements StationS
 			String method = "createStation";
 			httpClient = new DefaultHttpClient();
 			HttpPost postRequest = new HttpPost(url + "/station/" + method);
+			if(postRequest ==null)
+				throw new MalformedURLException();
 			LOGGER.debug("END POINT URL: " + postRequest.getURI());
 			/**
 			Map<String, Object> values = new HashMap<String, Object>();
@@ -42,11 +44,14 @@ public class StationServiceImpl extends GenericServiceClient implements StationS
 			values.put("station_ids", station.getStations());
 			String body = "{\"" + method + "\": " + OBJECT_MAPPER.writeValueAsString(values) + "}";
 			**/
+			
 			String body = OBJECT_MAPPER.writeValueAsString(station);
 			LOGGER.debug("Request body: " + body);
 			StringEntity entity = new StringEntity(body);
 			entity.setContentType("application/json");
 			postRequest.setEntity(entity);
+			if(httpClient == null)
+				throw new NullPointerException();
 			HttpResponse response = httpClient.execute(postRequest);
 			String string = IOUtils.toString(response.getEntity().getContent());
 			System.out.println("Response body Stations: " + string);
@@ -59,12 +64,12 @@ public class StationServiceImpl extends GenericServiceClient implements StationS
 			httpClient.getConnectionManager().shutdown();
 			return string;
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			LOGGER.debug("MalformedURLException in StationServiceImpl :" +e.getMessage());
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.debug("IOException in StationServiceImpl :" +e.getMessage());
 		} catch (Exception e) 
 		{
-			e.printStackTrace();
+			LOGGER.debug("Exception in StationServiceImpl :" +e.getMessage());
 		}finally {
 			httpClient.close();
 		}
