@@ -27,17 +27,13 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 
 	public String createRoster(Roster roster) throws Exception {
 		LOGGER.debug("Inside createRoster");
-		
+		loadProperties();
 		DefaultHttpClient httpClient = null;
 		try {
-			loadProperties();
 			String method = "createRoster";
 			httpClient = new DefaultHttpClient();
 			HttpPost postRequest = new HttpPost(url + "/roster/" + method);
-			if(postRequest==null)
-				throw new MalformedURLException();
 			LOGGER.debug("END POINT URL: " + postRequest.getURI());
-			
 			/**
 			Map<String, Object> values = new HashMap<String, Object>();
 			values.put("roster_id", roster.getId());
@@ -47,14 +43,12 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 			values.put("employee_ids", roster.getEmployees());
 			String body = "{\"" + method + "\": " + OBJECT_MAPPER.writeValueAsString(values) + "}";
 			**/
-			
 			String body = OBJECT_MAPPER.writeValueAsString(roster);
+
 			LOGGER.debug("Request body: " + body);
 			StringEntity entity = new StringEntity(body);
 			entity.setContentType("application/json");
 			postRequest.setEntity(entity);
-			if(httpClient == null)
-				throw new NullPointerException();
 			HttpResponse response = httpClient.execute(postRequest);
 			String string = IOUtils.toString(response.getEntity().getContent());
 			System.out.println("Response body Roster: " + string);
@@ -66,11 +60,13 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 			httpClient.getConnectionManager().shutdown();
 			return string;
 		} catch (MalformedURLException e) {
-			LOGGER.debug("MalformedURLException in RosterServiceImpl :" +e.getMessage());
-		} catch (NullPointerException e) 
-		{
-			LOGGER.debug("NullPointerException in RosterServiceImpl :" +e.getMessage());
-		}finally {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		finally {
 			httpClient.close();
 		}
 		return null;
@@ -78,10 +74,9 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 
 	public String getRoster(String rosterId) {
 		LOGGER.debug("Inside getRoster");
-
+		loadProperties();
 		DefaultHttpClient httpClient = null;
 		try {
-			loadProperties();
 			String method = "getRoster";
 			httpClient = new DefaultHttpClient();
 			HttpGet postRequest = new HttpGet(url + "/roster/" + method);
@@ -96,9 +91,6 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 			//postRequest.setParams(params);
 			
 			//postRequest.setEntity(entity);
-			if(httpClient == null)
-				throw new NullPointerException();
-
 			HttpResponse response = httpClient.execute(postRequest);
 			String string = IOUtils.toString(response.getEntity().getContent());
 			System.out.println("Response body: " + string);
@@ -106,19 +98,18 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 			if (response.getStatusLine().getStatusCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
 			}
-			
 			System.out.println("getRoster Done");
 			httpClient.getConnectionManager().shutdown();
 			//Gson gson = new Gson();
 			return string;
 		} catch (MalformedURLException e) {
-			LOGGER.debug("MalformedURLException in RosterServiceImpl :" +e.getMessage());
+			e.printStackTrace();
 		} catch (IOException e) {
-			LOGGER.debug("IOException in RosterServiceImpl :" +e.getMessage());
-		} catch (NullPointerException e) 
-		{
-			LOGGER.debug("NullPointerException in RosterServiceImpl :" +e.getMessage());
-		}finally {
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}  
+		finally {
 			httpClient.close();
 		}
 		return null;

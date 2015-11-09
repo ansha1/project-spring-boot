@@ -25,16 +25,13 @@ public class StationServiceImpl extends GenericServiceClient implements StationS
 
 	public String createStation(Station station) throws Exception {
 		LOGGER.debug("Inside createStation");
-		
+		loadProperties();
 
 		DefaultHttpClient httpClient = null;
 		try {
-			loadProperties();
 			String method = "createStation";
 			httpClient = new DefaultHttpClient();
 			HttpPost postRequest = new HttpPost(url + "/station/" + method);
-			if(postRequest ==null)
-				throw new MalformedURLException();
 			LOGGER.debug("END POINT URL: " + postRequest.getURI());
 			/**
 			Map<String, Object> values = new HashMap<String, Object>();
@@ -44,14 +41,11 @@ public class StationServiceImpl extends GenericServiceClient implements StationS
 			values.put("station_ids", station.getStations());
 			String body = "{\"" + method + "\": " + OBJECT_MAPPER.writeValueAsString(values) + "}";
 			**/
-			
 			String body = OBJECT_MAPPER.writeValueAsString(station);
 			LOGGER.debug("Request body: " + body);
 			StringEntity entity = new StringEntity(body);
 			entity.setContentType("application/json");
 			postRequest.setEntity(entity);
-			if(httpClient == null)
-				throw new NullPointerException();
 			HttpResponse response = httpClient.execute(postRequest);
 			String string = IOUtils.toString(response.getEntity().getContent());
 			System.out.println("Response body Stations: " + string);
@@ -59,18 +53,19 @@ public class StationServiceImpl extends GenericServiceClient implements StationS
 			if (response.getStatusLine().getStatusCode() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
 			}
-			
-			System.out.println("Create Station Done");
+			System.out.println("Station Done");
 			httpClient.getConnectionManager().shutdown();
 			return string;
 		} catch (MalformedURLException e) {
-			LOGGER.debug("MalformedURLException in StationServiceImpl :" +e.getMessage());
+			e.printStackTrace();
 		} catch (IOException e) {
-			LOGGER.debug("IOException in StationServiceImpl :" +e.getMessage());
-		} catch (Exception e) 
+			e.printStackTrace();
+		} 
+		catch(Exception e)
 		{
-			LOGGER.debug("Exception in StationServiceImpl :" +e.getMessage());
+			e.printStackTrace();
 		}finally {
+		
 			httpClient.close();
 		}
 		return null;

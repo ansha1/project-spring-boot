@@ -11,11 +11,11 @@ import org.slf4j.LoggerFactory;
 public class GenericServiceClient {
 
 	protected final Logger LOGGER = LoggerFactory.getLogger(getClass());
+
 	protected String url;
 
 	protected void loadProperties() {
-		
-		FileInputStream inFile =null;
+		FileInputStream inFile = null;
 		Properties properties = null;
 		try {
 			inFile = new FileInputStream(new File("connection.properties"));
@@ -23,16 +23,16 @@ public class GenericServiceClient {
 			properties.load(inFile);
 			url = properties.getProperty("url");
 		} catch (IOException e) {
-			LOGGER.debug("Exception in GenericServiceImpl :" +e.getMessage());		}
+			e.printStackTrace();
+		}
 		finally
 		{
 			try {
 				inFile.close();
 			} catch (IOException e) {
-				LOGGER.debug("IOException in GenericServiceImpl :" +e.getMessage());
+				e.printStackTrace();
 			}
 		}
-
 
 	}
 }
