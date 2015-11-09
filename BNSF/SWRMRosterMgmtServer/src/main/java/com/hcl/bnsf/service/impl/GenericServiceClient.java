@@ -24,6 +24,15 @@ public class GenericServiceClient {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		finally
+		{
+			try {
+				inFile.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
 
 	}
 }

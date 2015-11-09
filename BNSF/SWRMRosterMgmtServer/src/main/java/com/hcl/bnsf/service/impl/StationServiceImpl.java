@@ -60,7 +60,10 @@ public class StationServiceImpl extends GenericServiceClient implements StationS
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {
+		} catch (Exception e) 
+		{
+			e.printStackTrace();
+		}finally {
 			httpClient.close();
 		}
 		return null;
