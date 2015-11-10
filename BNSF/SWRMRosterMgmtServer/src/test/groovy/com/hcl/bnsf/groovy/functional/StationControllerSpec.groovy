@@ -64,19 +64,18 @@ class StationControllerSpec extends Specification {
 	   String output;
 	   JsonPath jsonPath;
 	   
-	   def "add roster should add roster and return back the object"() {
+	   def "add station should add station with employee and return back the object"() {
 		   given:
-		Station station = new Station();
-		station.setId("1");
-		station.setName("TestName");
-		Employee e1 = new Employee("1", "1", "Emp1", "9999999999", 1);
-		List<Employee> employeeList = new ArrayList<Employee>(Arrays.asList(e1));
-		station.setEmployees(employeeList);
-		Station station1 = new Station("1", "Stn1", employeeList);
-		List<Station> stations = new ArrayList<Station>(Arrays.asList(station1));
-		station.setStations(stations);
-		StationController controller = new StationController(stationService);
-	
+				Station station = new Station();
+				station.setId("1");
+				station.setName("TestName");
+				Employee e1 = new Employee("1", "1", "Emp1", "9999999999", 1);
+				List<Employee> employeeList = new ArrayList<Employee>(Arrays.asList(e1));
+				station.setEmployees(employeeList);
+				Station station1 = new Station("1", "Stn1", employeeList);
+				List<Station> stations = new ArrayList<Station>(Arrays.asList(station1));
+				station.setStations(stations);
+				StationController controller = new StationController(stationService);	
 		   when:
 		   	  String createStation = controller.createStation(station);
 		   then:

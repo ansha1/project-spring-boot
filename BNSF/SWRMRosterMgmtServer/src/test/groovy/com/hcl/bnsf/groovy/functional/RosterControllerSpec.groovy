@@ -77,8 +77,7 @@ class RosterControllerSpec extends Specification {
 			Station station = new Station("1", "Stn1", employeeList);
 			List<Station> stations = new ArrayList<Station>(Arrays.asList(station));
 			roster.setStations(stations);
-			RosterController controller = new RosterController(rosterService);
-				
+			RosterController controller = new RosterController(rosterService);				
 		   when:
 			   output = controller.createRoster(roster);			   
 		   then:

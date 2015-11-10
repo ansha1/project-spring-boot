@@ -58,7 +58,7 @@ class EmployeeControllerSpec extends Specification {
 	   String output;
 	   JsonPath jsonPath;
 	   
-	   def "add employee to roster should return Success"() {
+	   def "add employee to roster should add the employee and return the object back"() {
 		   given:
 			   Employee emp = new Employee("1", "123", "Neeraj", "12345", 123);
 			   EmployeeController ec = new EmployeeController(employeeService);
