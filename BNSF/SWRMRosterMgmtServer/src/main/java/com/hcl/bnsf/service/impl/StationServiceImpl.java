@@ -2,8 +2,8 @@ package com.hcl.bnsf.service.impl;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.HashMap;
-import java.util.Map;
+
+
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hcl.bnsf.domain.Station;
 import com.hcl.bnsf.service.StationService;
 
+@SuppressWarnings("deprecation")
 @Service
 @Validated
 public class StationServiceImpl extends GenericServiceClient implements StationService{
@@ -57,10 +58,15 @@ public class StationServiceImpl extends GenericServiceClient implements StationS
 			httpClient.getConnectionManager().shutdown();
 			return string;
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			LOGGER.debug("MalformedURLException in StationServiceImpl:" + e.getMessage());
 		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
+			LOGGER.debug("IOException in StationServiceImpl:" + e.getMessage());
+		} 
+		catch(Exception e)
+		{
+			LOGGER.debug("Exception in StationServiceImpl:" + e.getMessage());
+		}finally {
+		
 			httpClient.close();
 		}
 		return null;

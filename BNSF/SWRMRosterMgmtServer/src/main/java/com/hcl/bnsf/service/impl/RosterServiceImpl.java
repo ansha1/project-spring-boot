@@ -3,7 +3,7 @@ package com.hcl.bnsf.service.impl;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
@@ -18,8 +18,9 @@ import org.springframework.validation.annotation.Validated;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hcl.bnsf.domain.Roster;
 import com.hcl.bnsf.service.RosterService;
-import com.google.gson.Gson;
 
+
+@SuppressWarnings("deprecation")
 @Service
 @Validated
 public class RosterServiceImpl extends GenericServiceClient implements RosterService {
@@ -60,10 +61,13 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 			httpClient.getConnectionManager().shutdown();
 			return string;
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			LOGGER.debug("MalformedURLException in RosterServiceImpl:"+ e.getMessage());
 		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
+			LOGGER.debug("IOException in RosterServiceImpl:"+ e.getMessage());
+		} catch (Exception e) {
+			LOGGER.debug("Exception in RosterServiceImpl:"+ e.getMessage());
+		} 
+		finally {
 			httpClient.close();
 		}
 		return null;
@@ -97,13 +101,16 @@ public class RosterServiceImpl extends GenericServiceClient implements RosterSer
 			}
 			System.out.println("getRoster Done");
 			httpClient.getConnectionManager().shutdown();
-			//Gson gson = new Gson();
+
 			return string;
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			LOGGER.debug("MalformedURLException in RosterServiceImpl:"+ e.getMessage());
 		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
+			LOGGER.debug("IOException in RosterServiceImpl:"+ e.getMessage());
+		} catch (Exception e) {
+			LOGGER.debug("Exception in RosterServiceImpl:"+ e.getMessage());
+		} 
+		finally {
 			httpClient.close();
 		}
 		return null;

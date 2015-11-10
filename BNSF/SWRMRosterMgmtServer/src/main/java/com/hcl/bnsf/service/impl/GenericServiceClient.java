@@ -15,14 +15,23 @@ public class GenericServiceClient {
 	protected String url;
 
 	protected void loadProperties() {
-
+		FileInputStream inFile = null;
+		Properties properties = null;
 		try {
-			FileInputStream inFile = new FileInputStream(new File("connection.properties"));
-			Properties properties = new Properties();
+			inFile = new FileInputStream(new File("connection.properties"));
+			properties = new Properties();
 			properties.load(inFile);
 			url = properties.getProperty("url");
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.debug("IOException in GenericServiceClient:"+ e.getMessage());
+		}
+		finally
+		{
+			try {
+				inFile.close();
+			} catch (IOException e) {
+				LOGGER.debug("IOException in GenericServiceClient:"+ e.getMessage());
+			}
 		}
 
 	}
