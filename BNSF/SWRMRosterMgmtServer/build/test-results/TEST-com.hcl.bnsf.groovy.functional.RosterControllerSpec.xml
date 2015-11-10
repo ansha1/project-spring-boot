@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hcl.bnsf.groovy.functional.RosterControllerSpec" tests="1" skipped="0" failures="0" errors="0" timestamp="2015-11-10T06:59:14" hostname="Sandeep-MacBook.local" time="0.141">
+  <properties/>
+  <testcase name="add roster should add roster and return back the object" classname="com.hcl.bnsf.groovy.functional.RosterControllerSpec" time="0.141"/>
+  <system-out><![CDATA[2015-11-10 12:29:14.730  INFO 99761 --- [    Test worker] o.s.t.c.web.WebTestContextBootstrapper   : Could not instantiate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener]. Specify custom listener classes or make the default listener classes (and their required dependencies) available. Offending class: [org/springframework/transaction/interceptor/TransactionAttributeSource]
+2015-11-10 12:29:14.731  INFO 99761 --- [    Test worker] o.s.t.c.web.WebTestContextBootstrapper   : Could not instantiate TestExecutionListener [org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]. Specify custom listener classes or make the default listener classes (and their required dependencies) available. Offending class: [org/springframework/transaction/interceptor/TransactionAttribute]
+2015-11-10 12:29:14.732  INFO 99761 --- [    Test worker] o.s.t.c.web.WebTestContextBootstrapper   : Using TestExecutionListeners: [org.springframework.boot.test.IntegrationTestPropertiesListener@3a82717, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@55f21028, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1df844ee]
+Received request to create the {}Roster [id=1, type=SimpleType, name=TestRoster, stations=[Station [id=1, name=Stn1]], employees=[Employee [id=1, name=Emp1, phoneNo=9999999999, seqNo=1]]]
+Response body Roster: {
+  "id" : "1",
+  "type" : "SimpleType",
+  "name" : "TestRoster",
+  "stations" : [ {
+    "id" : "1",
+    "name" : "Stn1",
+    "employees" : [ {
+      "rosterId" : "1",
+      "id" : "1",
+      "name" : "Emp1",
+      "phoneNo" : "9999999999",
+      "seqNo" : 1
+    } ],
+    "stations" : null
+  } ],
+  "employees" : [ {
+    "rosterId" : "1",
+    "id" : "1",
+    "name" : "Emp1",
+    "phoneNo" : "9999999999",
+    "seqNo" : 1
+  } ]
+}
+Roster Done
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
