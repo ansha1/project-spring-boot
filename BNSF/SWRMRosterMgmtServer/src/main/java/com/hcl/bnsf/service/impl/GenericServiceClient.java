@@ -23,14 +23,14 @@ public class GenericServiceClient {
 			properties.load(inFile);
 			url = properties.getProperty("url");
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.debug("IOException in GenericServiceClient:"+ e.getMessage());
 		}
 		finally
 		{
 			try {
 				inFile.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				LOGGER.debug("IOException in GenericServiceClient:"+ e.getMessage());
 			}
 		}
 

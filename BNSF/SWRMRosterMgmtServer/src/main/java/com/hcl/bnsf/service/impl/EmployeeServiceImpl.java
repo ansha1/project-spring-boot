@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 
+@SuppressWarnings("deprecation")
 @Service
 @Validated
 public class EmployeeServiceImpl extends GenericServiceClient implements EmployeeService {
@@ -46,12 +47,12 @@ public class EmployeeServiceImpl extends GenericServiceClient implements Employe
 			httpClient.getConnectionManager().shutdown();
 			return string;
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			LOGGER.debug("MalformedURLException in EmployeeServiceImpl:" + e.getMessage());
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.debug("IOException in EmployeeServiceImpl:" + e.getMessage());
 		} catch (Exception e) 
 		{
-			e.printStackTrace();
+			LOGGER.debug("Exception in EmployeeServiceImpl:" + e.getMessage());
 		}finally {
 			
 			httpClient.close();

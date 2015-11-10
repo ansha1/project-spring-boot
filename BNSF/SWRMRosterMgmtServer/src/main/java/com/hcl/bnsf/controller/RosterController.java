@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hcl.bnsf.domain.Employee;
+
 import com.hcl.bnsf.domain.Roster;
-import com.hcl.bnsf.service.EmployeeService;
 import com.hcl.bnsf.service.RosterService;
 
 @RestController
@@ -44,7 +43,6 @@ public class RosterController {
 			}
 			catch (Exception e) {
 				LOGGER.debug(e.getMessage(), e);
-				e.printStackTrace();
 			}
 			return rosterService.getRoster("1");
 		}
