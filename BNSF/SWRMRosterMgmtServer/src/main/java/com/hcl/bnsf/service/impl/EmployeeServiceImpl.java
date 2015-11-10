@@ -31,9 +31,23 @@ public class EmployeeServiceImpl extends GenericServiceClient implements Employe
 			httpClient = new DefaultHttpClient();
 			HttpPost postRequest = new HttpPost(url + "/employee/" + method);
 			LOGGER.debug("END POINT URL: " + postRequest.getURI());
+			
+			/**
+			Map<String, Object> values = new HashMap<String, Object>();
+			values.put("roster_id", employee.getRosterId());
+			values.put("employee_id", employee.getId());
+			values.put("sequence_no", employee.getSeqNo());
+			values.put("name", employee.getName());
+			values.put("phone_number", employee.getPhoneNo());
+			String body = "{\"" + method + "\": " + OBJECT_MAPPER.writeValueAsString(values) + "}";
+			**/
+
+			
 			String body = OBJECT_MAPPER.writeValueAsString(employee);
+			
 			LOGGER.debug("Request body: " + body);
 			StringEntity entity = new StringEntity(body);
+			
 			entity.setContentType("application/json");
 			postRequest.setEntity(entity);
 			HttpResponse response = httpClient.execute(postRequest);
