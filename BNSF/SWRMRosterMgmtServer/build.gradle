@@ -160,7 +160,7 @@ sonarRunner{
 		property "sonar.projectVersion", "V1.0"
 		property "sonar.language", "java"
 		property "sonar.sources", "src"
-		property "sonar.binaries", "build"
+		property "sonar.binaries", "build/classes"
 		property "sonar.profile", "FindBugs"
 		
 		property "sonar.jacoco.reportPath", "$buildDir/jacoco/jacocoTest.exec"	
