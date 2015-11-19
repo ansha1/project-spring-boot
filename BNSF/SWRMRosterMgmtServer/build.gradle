@@ -134,17 +134,12 @@ dependencies {
 //}
 
 
-task myCustomTask <<{
+task deploy(dependsOn: [build,jacocoTestReport]){
 	copy{
 		from 'build/reports'
 		into customProp+'/'+getCurrentTimestamp()+'/reports'
 	}
 }
-
-task deploy(dependsOn: [build,jacocoTestReport]){
-	myCustomTask
-	}
-
 
 test {
 	testLogging {
