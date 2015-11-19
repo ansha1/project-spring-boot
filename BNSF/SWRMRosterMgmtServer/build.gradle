@@ -134,14 +134,16 @@ dependencies {
 //}
 
 
-
-
-task deploy(dependsOn: [build,jacocoTestReport]){
+task myCustomTask <<{
 	copy{
 		from 'build/reports'
 		into customProp+'/'+getCurrentTimestamp()+'/reports'
 	}
 }
+
+task deploy(dependsOn: [build,jacocoTestReport]){
+	myCustomTask
+	}
 
 
 test {
@@ -199,6 +201,6 @@ sonarRunner{
 		property "sonar.binaries", "build/classes"
 		property "sonar.profile", "FindBugs"
 		
-		property "sonar.jacoco.reportPath", "$buildDir/jacoco/jacocoTest-"+getCurrentTimestamp()+".exec"
+		property "sonar.jacoco.reportPath", "$buildDir/jacoco/jacocoTest.exec"
 	}
 }
