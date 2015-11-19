@@ -65,13 +65,13 @@ public class EmployeeServiceImpl extends GenericServiceClient implements Employe
 		} catch (IOException e) {
 			LOGGER.debug("IOException in EmployeeServiceImpl:" + e.getMessage());
 		} 
-//		catch (Exception e) 
-//		{
-//			LOGGER.debug("Exception in EmployeeServiceImpl:" + e.getMessage());
-//		}finally {
-//			
-//			httpClient.close();
-//		}
+		catch (Exception e) 
+		{
+			LOGGER.debug("Exception in EmployeeServiceImpl:" + e.getMessage());
+		}finally {
+			
+			httpClient.close();
+		}
 		return null;
 	} 
 		}

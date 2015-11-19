@@ -71,7 +71,8 @@ public class Employee implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", phoneNo=" + phoneNo + ", seqNo=" + seqNo + "]";
+		//return "Employee [id=" + id + ", name=" + name + ", phoneNo=" + phoneNo + ", seqNo=" + seqNo + "]";
+		return null;
 	}
 
 }
