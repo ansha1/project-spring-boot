@@ -66,6 +66,6 @@ class EmployeeControllerSpec extends Specification {
 		   when:
 			   output = ec.addEmployeeToRoster(emp);			   
 		   then:
-		   	   output.contains("Neeraj");
+		   	   output.contains("Gupta");
 	}
 }
