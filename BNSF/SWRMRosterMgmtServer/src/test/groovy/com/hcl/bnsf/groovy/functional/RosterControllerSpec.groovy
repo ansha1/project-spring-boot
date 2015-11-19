@@ -65,7 +65,7 @@ class RosterControllerSpec extends Specification {
 	   String output;
 	   JsonPath jsonPath;
 	   
-	   def "add roster should add roster and return back the object"() {
+	   def "addRoster#add roster should add roster and return back the object"() {
 		   given:
 			Roster roster = new Roster();
 			roster.id = "1";

@@ -64,7 +64,7 @@ class StationControllerSpec extends Specification {
 	   String output;
 	   JsonPath jsonPath;
 	   
-	   def "add station should add station with employee and return back the object"() {
+	   def "addStation#add station should add station with employee and return back the object"() {
 		   given:
 				Station station = new Station();
 				station.setId("1");

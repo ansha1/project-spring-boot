@@ -135,14 +135,14 @@ dependencies {
 
 
 
-
+/**
 task deploy(dependsOn: [build,jacocoTestReport]){
 	copy{
 		from 'build/reports'
 		into customProp+'/'+getCurrentTimestamp()+'/reports'
 	}
 }
-
+**/
 
 test {
 	testLogging {
