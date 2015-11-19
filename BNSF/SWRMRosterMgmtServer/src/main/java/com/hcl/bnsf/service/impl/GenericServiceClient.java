@@ -25,14 +25,14 @@ public class GenericServiceClient {
 		} catch (IOException e) {
 			LOGGER.debug("IOException in GenericServiceClient:"+ e.getMessage());
 		}
-		finally
-		{
-			try {
-				inFile.close();
-			} catch (IOException e) {
-				LOGGER.debug("IOException in GenericServiceClient:"+ e.getMessage());
-			}
-		}
+//		finally
+//		{
+//			try {
+//				inFile.close();
+//			} catch (IOException e) {
+//				LOGGER.debug("IOException in GenericServiceClient:"+ e.getMessage());
+//			}
+//		}
 
 	}
 }
