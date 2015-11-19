@@ -64,13 +64,14 @@ public class EmployeeServiceImpl extends GenericServiceClient implements Employe
 			LOGGER.debug("MalformedURLException in EmployeeServiceImpl:" + e.getMessage());
 		} catch (IOException e) {
 			LOGGER.debug("IOException in EmployeeServiceImpl:" + e.getMessage());
-		} catch (Exception e) 
-		{
-			LOGGER.debug("Exception in EmployeeServiceImpl:" + e.getMessage());
-		}finally {
-			
-			httpClient.close();
-		}
+		} 
+//		catch (Exception e) 
+//		{
+//			LOGGER.debug("Exception in EmployeeServiceImpl:" + e.getMessage());
+//		}finally {
+//			
+//			httpClient.close();
+//		}
 		return null;
 	} 
 		}
