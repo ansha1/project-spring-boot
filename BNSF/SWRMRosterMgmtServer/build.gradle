@@ -28,11 +28,11 @@ apply plugin: 'jacoco'
 apply plugin: 'project-report'
 
 
-def getCurrentTimestamp(){
-	Date today = new Date()
-	SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy_hh-mm-ss")
-	return df.format(today)
-}
+//def getCurrentTimestamp(){
+//	Date today = new Date()
+//	SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy_hh-mm-ss")
+//	return df.format(today)
+//}
 
 
 
@@ -137,7 +137,7 @@ dependencies {
 task deploy(dependsOn: [build,jacocoTestReport]){
 	copy{
 		from 'build/reports'
-		into customProp+'/'+getCurrentTimestamp()+'/reports'
+		into customProp+'/'+customTime+'/reports'
 	}
 }
 
