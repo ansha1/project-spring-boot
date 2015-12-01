@@ -58,8 +58,6 @@ import com.hcl.bnsf.Application;
 @Stepwise
 class RosterControllerSpec extends Specification {
 
-//This test case fails as it is not able to invoke the controller directly, should be invoked via REST URL?
-
 	   @Autowired
 	   RosterService rosterService;
 	   String output;
