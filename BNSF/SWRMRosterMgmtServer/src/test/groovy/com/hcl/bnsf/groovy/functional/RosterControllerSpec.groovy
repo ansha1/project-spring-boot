@@ -79,6 +79,6 @@ class RosterControllerSpec extends Specification {
 		   when:
 			   output = controller.createRoster(roster);			   
 		   then:
-		   	   output.contains("BreakMessage");
+		   	   output.contains("SimpleType");
    	}
 }
